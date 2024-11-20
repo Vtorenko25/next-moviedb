@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import React from "react";
-import GetMovies from "@/app/movies/getmovie/Getmovie";
+import MoviesPage from "@/app/movies/page";
+
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -30,7 +31,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-<GetMovies/>
+<MoviesPage/>
       {children}
       </body>
     </html>

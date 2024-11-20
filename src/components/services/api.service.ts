@@ -1,9 +1,8 @@
-import { Imovies } from "@/app/components/models/movies/Imovies";
-
-const base: string = 'https://api.themoviedb.org/3/discover/';
+import { Imovies } from "@/components/models/Imovies";
+import {base, token} from "@/components/constants/urls";
 
 const urlBuilder = {
-    moviesBaseUrl: (newPage: number) => `movie?page=${newPage}`,
+    moviesBaseUrl: (newPage: number) => `/movie?language=uk-UA&page=${newPage}`,
     allMovies: (newPage: number) => base + urlBuilder.moviesBaseUrl(newPage),
 };
 
@@ -14,12 +13,12 @@ const movieService = {
                 method: 'GET',
                 headers: {
                     accept: 'application/json',
-                    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1YTZmOTg3ZTg2YzA4MDU4YTMwMDk1NDQzZDQ0NDZkYiIsIm5iZiI6MTczMTk0OTM4MS4wOTg5MzE2LCJzdWIiOiI2NzNiNWYyN2EwOTFjMDBhMTVhNmY4OWEiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.KViVnd6JvcV7FWybIRhDHn9PtBFFhGQQbG2KHV_zmgg',
+                    Authorization: 'Bearer ' + token,
                 },
             });
             const data = await response.json();
             console.log(data);
-            return data.results; // Повертаємо лише масив фільмів
+            return data.results;
             // console.log(data.results);
         } catch (error) {
             console.error("Error fetching movies:", error);
