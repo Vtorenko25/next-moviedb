@@ -1,6 +1,6 @@
 import React from 'react';
-import movieService from "@/components/services/api.service";
-import MoviesComponent from "@/components/movievs/MoviesComponent";
+import MoviesComponent from "@/components/movies/MoviesComponent";
+import {movieService} from "@/components/services/api.service";
 
 
 

@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import React from "react";
 import MoviesPage from "@/app/movies/page";
+import MoviePage from "@/app/movies/[id]/page";
 
 
 const geistSans = localFont({

@@ -1,10 +1,16 @@
-import React from "react";
+import React from 'react';
+import {Metadata} from "next";
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+export const metadata: Metadata = {
+    title: 'MovieLayout metadata'
+}
+type Props = { children: React.ReactNode }
+const MovieLayout = ({children}: Props) => {
     return (
         <div>
-            <h1>Movie Details</h1>
-            {children} {/* Обов'язково включіть children */}
+            {children}
         </div>
     );
-}
+};
+
+export default MovieLayout;

@@ -1,6 +1,8 @@
 import React, {FC} from 'react';
 import {Imovies} from "@/components/models/Imovies";
 import {img} from "@/components/constants/urls";
+import Link from "next/link";
+
 
 
 type Props = {
@@ -13,16 +15,18 @@ const MoviesComponent:FC<Props> = ({movies}) => {
             <ul>
             {
                 movies.map((movie:Imovies) => (<li key={movie.id}>
-                    {movie.poster_path && (
-                        <img
+                   <Link href={`/movies/${movie.id}`}>
+                       {movie.title}
+                       {movie.poster_path && (
+                         <img
                             src={`${img}${movie.poster_path}`}
                             alt={movie.title}
                             style={{ width: "200px" }}
                         />
-                    )}
+                    )} </Link>
                     <div>
+
                         <span>{movie.title}</span>
-                        {/*<span>{movie.vote_count}/10</span>*/}
                         <span>{movie.vote_average}</span>
                     </div>
                     <div>
