@@ -13,34 +13,35 @@ const MoviesComponent:FC<Props> = ({movies}) => {
     return (
         <div>
             <ul>
-            {
-                movies.map((movie:Imovies) => (<li key={movie.id}>
-                   <Link href={`/movies/${movie.id}`}>
-                       {movie.title}
-                       {movie.poster_path && (
-                         <img
-                            src={`${img}${movie.poster_path}`}
-                            alt={movie.title}
-                            style={{ width: "200px" }}
-                        />
-                    )} </Link>
-                    <div>
+                {
+                    movies.map((movie: Imovies) => (<li key={movie.id}>
+                        <Link href={`/movies/${movie.id}`}>
+                            {movie.title}
+                            {movie.poster_path && (
+                                <img
+                                    src={`${img}${movie.poster_path}`}
+                                    alt={movie.title}
+                                    style={{width: "200px"}}
+                                />
+                            )} </Link>
+                        <div>
 
-                        <span>{movie.title}</span>
-                        <span>{movie.vote_average}</span>
-                    </div>
-                    <div>
-                        <span>{movie.release_date}</span>
-                        <span>{movie.original_language}</span>
-                    </div>
-                    <div>
-                        <p>
-                            {movie.overview}
-                        </p>
-                    </div>
-                </li>))
-            }
+                            <span>{movie.title}</span>
+                            <span>{movie.vote_average}</span>
+                        </div>
+                        <div>
+                            <span>{movie.release_date}</span>
+                            <span>{movie.original_language}</span>
+                        </div>
+                        <div>
+                            <p>
+                                {movie.overview}
+                            </p>
+                        </div>
+                    </li>))
+                }
             </ul>
+
         </div>
     );
 };

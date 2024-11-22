@@ -10,7 +10,9 @@ type Params = {
 
 const MoviePage = async ({ params }: Params) => {
     const movieId = params.id;
+
     const movieData = await fetchMovieById(movieId);
+
     return (
         <div>
             <MovieComponent params={movieData} />
