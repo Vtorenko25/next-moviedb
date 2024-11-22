@@ -13,7 +13,7 @@ const MoviesPage = () => {
             try {
                 const allMovies = await movieService.getAllMovies(page);
                 console.log("Fetched movies:", allMovies);
-                setMovies(allMovies.data || allMovies); // Витягуємо результати
+                setMovies(allMovies.results || allMovies); // Витягуємо результати
             } catch (error) {
                 console.error("Помилка при завантаженні фільмів:", error);
             }

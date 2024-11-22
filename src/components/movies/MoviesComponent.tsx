@@ -32,6 +32,7 @@ const MoviesComponent:FC<Props> = ({movies}) => {
                         <div>
                             <span>{movie.release_date}</span>
                             <span>{movie.original_language}</span>
+                            <span>{movie.genre_ids.join(' ')}</span>
                         </div>
                         <div>
                             <p>

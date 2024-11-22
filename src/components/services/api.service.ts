@@ -3,6 +3,7 @@ import {base, baseId, token} from "@/components/constants/urls";
 
 
 
+
 export let newPage = 1;
 export const urlBuilder = {
     moviesBaseUrl: (newPage: number) => `/movie?language=uk-UA&page=${newPage}`,

@@ -12,7 +12,7 @@ export interface Imovies {
     vote_count: number
     adult: boolean,
     backdrop_path: string,
-    genre_ids: genre []
+    genre_ids: number[]
 }
 interface genre {
     id: number
