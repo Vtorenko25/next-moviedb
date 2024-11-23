@@ -4,12 +4,13 @@ import React, { useState, useEffect } from 'react';
 import MoviesComponent from "@/components/movies/MoviesComponent";
 import { movieService } from "@/components/services/api.service";
 import SearchComponent from '@/components/search/SearchComponents';
+import {Genre, Imovies} from "@/components/models/Imovies";
 
 
 const MoviesPage = () => {
     const [page, setPage] = useState(1);
-    const [movies, setMovies] = useState([]);
-    const [genres, setGenres] = useState([]);
+    const [movies, setMovies] = useState<Imovies[]>([]);
+    const [genres, setGenres] = useState<Genre[]>([]);
     const [searchQuery, setSearchQuery] = useState(""); // Для збереження пошукового запиту
 
     // Завантаження жанрів

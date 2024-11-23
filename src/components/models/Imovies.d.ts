@@ -14,8 +14,16 @@ export interface Imovies {
     backdrop_path: string,
     genre_ids: number[];  // Це має бути масив чисел, а не масив об'єктів
 }
-export interface Igenre {
-    genres(genres: any): unknown;
-    id: number,
-    name: string,
+// export interface Igenre {
+//     genres(genres: any): unknown;
+//     id: number,
+//     name: string,
+// }
+export interface Genre {
+    id: number;       // Genre ID
+    name: string;     // Genre name
+}
+
+export interface GenreResponse {
+    genres: Genre[];  // Array of genres
 }
