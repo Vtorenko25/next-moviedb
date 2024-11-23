@@ -1,4 +1,4 @@
-import {base, baseId, genres, token} from "@/components/constants/urls";
+import {base, baseId, genres, search, token} from "@/components/constants/urls";
 import {Imoviees} from "@/components/models/Imoviess";
 import {Igenre} from "@/components/models/Imovies";
 
@@ -33,6 +33,7 @@ export const movieService = {
     getMovie: async (id: string) => {
         try{
             const response= await fetch(urlBuilder.movie(id), {
+                method: 'GET',
                 headers: {
                     accept: 'application/json',
                     Authorization: `Bearer ${token}`,
@@ -72,6 +73,26 @@ export const movieService = {
             throw new Error(`Помилка при отриманні фільмів за жанром: ${response.status}`);
         }
         return response.json();
-    }
+    },
+    searchMovies: async (query: string) => {
+        try {
+            const response = await fetch(`${search}movie?query=${encodeURIComponent(query)}`, {
+                method: 'GET', // Метод має бути в корені параметрів
+                headers: {
+                    accept: 'application/json',
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            if (!response.ok) {
+                throw new Error(`Помилка при пошуку фільмів: ${response.statusText}`);
+            }
+            const data = await response.json();
+            console.log("Search results:", data);
+            return data;
+        } catch (error) {
+            console.error("Error searching movies:", error);
+            throw error;
+        }
+    },
 };
 
