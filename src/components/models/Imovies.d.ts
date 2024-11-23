@@ -15,6 +15,7 @@ export interface Imovies {
     genre_ids: number[];  // Це має бути масив чисел, а не масив об'єктів
 }
 export interface Igenre {
+    genres(genres: any): unknown;
     id: number,
     name: string,
 }

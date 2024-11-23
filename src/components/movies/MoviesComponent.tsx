@@ -4,10 +4,17 @@ import Link from "next/link";
 
 type Props = {
     movies: Imovies[];
-    getGenreNames: (genreIds: number[]) => string; // Додано для отримання жанрів по ID
+    getGenreNames: (genreIds: number[]) => string;
+    genres: { id: number, name: string }[];
 }
 
-const MoviesComponent: FC<Props> = ({ movies, getGenreNames }) => {
+const MoviesComponent: FC<Props> = ({ movies, getGenreNames, genres }) => {
+    const getGenreNameById = (id: number) => {
+        if (!genres || genres.length === 0) return "Невідомий жанр"; // Перевірка
+        const genre = genres.find((genre) => genre.id === id);
+        return genre ? genre.name : "Невідомий жанр";
+    };
+
     return (
         <div>
             <ul>
@@ -29,7 +36,15 @@ const MoviesComponent: FC<Props> = ({ movies, getGenreNames }) => {
                         <div>
                             <span>{movie.release_date}</span>
                             <span>{movie.original_language}</span>
-                            <span>{getGenreNames(movie.genre_ids)}</span> {/* Вивести жанри */}
+                            <span>
+                                {movie.genre_ids.map((genreId) => (
+                                    <Link key={genreId} href={`/genre/${genreId}`}>
+                                    <span style={{ cursor: 'pointer', color: 'blue', marginRight: '5px' }}>
+                                         {getGenreNames([genreId])}
+                                    </span>
+                                    </Link>
+                                ))}
+                            </span>
                         </div>
                         <div>
                             <p>{movie.overview}</p>

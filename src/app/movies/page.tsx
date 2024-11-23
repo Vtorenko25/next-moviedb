@@ -16,6 +16,7 @@ const MoviesPage = () => {
             try {
                 const allMovies = await movieService.getMovies(page);
                 console.log("Fetched movies:", allMovies);
+                // @ts-ignore
                 setMovies(allMovies.results); // Витягуємо лише `results`
             } catch (error) {
                 console.error("Помилка при завантаженні фільмів:", error);
@@ -31,6 +32,7 @@ const MoviesPage = () => {
             try {
                 const allGenres = await movieService.getGenres();
                 console.log("Fetched genres:", allGenres);
+                // @ts-ignore
                 setGenres(allGenres.genres); // Витягуємо масив жанрів з об'єкта
             } catch (error) {
                 console.error("Помилка при завантаженні жанрів:", error);
@@ -44,11 +46,14 @@ const MoviesPage = () => {
     const getGenreNames = (genreIds: Igenre[]) => {
         return genreIds
             .map(id => {
+                // @ts-ignore
                 const genre = genres.find(genre => genre.id === id); // Шукаємо жанр за ID
+                // @ts-ignore
                 return genre ? genre.name : "Невідомий жанр"; // Повертаємо назву жанру або "Невідомий жанр"
             })
             .join(', '); // Перетворюємо масив жанрів в рядок
     };
+
 
     return (
         <div>

@@ -61,6 +61,17 @@ export const movieService = {
             console.error("Error fetching genres:", error);
             throw error;
         }
+    },
+    getMoviesByGenre: async (genreId: number) => {
+        const response = await fetch(`https://api.themoviedb.org/3/discover/movie?with_genres=${genreId}&language=uk-UA`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+        if (!response.ok) {
+            throw new Error(`Помилка при отриманні фільмів за жанром: ${response.status}`);
+        }
+        return response.json();
     }
 };
 
