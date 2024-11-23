@@ -3,7 +3,8 @@
 import React, { useState, useEffect } from 'react';
 import MoviesComponent from "@/components/movies/MoviesComponent";
 import { movieService } from "@/components/services/api.service";
-import { Igenre } from "@/components/models/Imovies";
+import SearchComponent from '@/components/search/SearchComponents';
+
 
 const MoviesPage = () => {
     const [page, setPage] = useState(1);
@@ -75,14 +76,7 @@ const MoviesPage = () => {
 
     return (
         <div>
-            <div>
-                <input
-                    type="text"
-                    placeholder="Пошук фільмів..."
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)} // Оновлюємо пошуковий запит
-                />
-            </div>
+            <SearchComponent searchQuery={searchQuery} setSearchQuery={setSearchQuery} /> {/* Викликаємо SearchComponent */}
             <MoviesComponent movies={movies} getGenreNames={getGenreNames} genres={genres} />
             {!searchQuery && ( // Пагінація з'являється лише без пошукового запиту
                 <div>

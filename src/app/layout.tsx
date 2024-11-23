@@ -2,9 +2,8 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import React from "react";
-import MoviesPage from "@/app/movies/page";
-import MoviePage from "@/app/movies/[id]/page";
-import GetGenres from "@/components/geners/getGenres";
+
+
 
 
 const geistSans = localFont({
