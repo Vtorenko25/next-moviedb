@@ -9,48 +9,59 @@ const MoviesPage = () => {
     const [page, setPage] = useState(1);
     const [movies, setMovies] = useState([]);
     const [genres, setGenres] = useState([]);
-    const [searchQuery, setSearchQuery] = useState(""); // Для тексту пошуку
-
-    // Завантаження фільмів
-    useEffect(() => {
-        if (searchQuery) return; // Якщо є пошуковий запит, не завантажуємо популярні фільми
-
-        const fetchMovies = async () => {
-            try {
-                const allMovies = await movieService.getMovies(page);
-                setMovies(allMovies.results); // Витягуємо лише `results`
-            } catch (error) {
-                console.error("Помилка при завантаженні фільмів:", error);
-            }
-        };
-
-        fetchMovies();
-    }, [page, searchQuery]); // Викликається при зміні сторінки або коли пошук порожній
+    const [searchQuery, setSearchQuery] = useState(""); // Для збереження пошукового запиту
 
     // Завантаження жанрів
     useEffect(() => {
         const fetchGenres = async () => {
             try {
                 const allGenres = await movieService.getGenres();
-                setGenres(allGenres.genres); // Витягуємо масив жанрів з об'єкта
+                setGenres(allGenres.genres);
             } catch (error) {
                 console.error("Помилка при завантаженні жанрів:", error);
             }
         };
-
         fetchGenres();
     }, []);
 
-    // Пошук фільмів
-    const handleSearch = async () => {
-        if (!searchQuery) return; // Не виконуємо пошук, якщо поле порожнє
+    // Функція для пошуку фільмів під час введення тексту
+    const searchMovies = async (query: string) => {
+        if (!query) {
+            setMovies([]); // Очищаємо список фільмів, якщо поле порожнє
+            return;
+        }
+
         try {
-            const searchResults = await movieService.searchMovies(searchQuery);
-            setMovies(searchResults.results); // Оновлюємо стан фільмів
+            const searchResults = await movieService.searchMovies(query);
+            setMovies(searchResults.results); // Оновлюємо стан фільмів з результатами пошуку
         } catch (error) {
             console.error("Помилка при пошуку фільмів:", error);
         }
     };
+
+    // Викликаємо searchMovies при кожній зміні searchQuery
+    useEffect(() => {
+        if (searchQuery) {
+            searchMovies(searchQuery); // Пошук по введеному тексту
+        } else {
+            setMovies([]); // Якщо поле порожнє, очищуємо результати
+        }
+    }, [searchQuery]);
+
+    // Завантаження фільмів для популярних (якщо немає пошукового запиту)
+    useEffect(() => {
+        if (searchQuery) return; // Якщо є пошуковий запит, не завантажуємо популярні фільми
+
+        const fetchMovies = async () => {
+            try {
+                const allMovies = await movieService.getMovies(page);
+                setMovies(allMovies.results); // Завантажуємо популярні фільми
+            } catch (error) {
+                console.error("Помилка при завантаженні фільмів:", error);
+            }
+        };
+        fetchMovies();
+    }, [page, searchQuery]);
 
     // Функція для отримання назв жанрів по ID
     const getGenreNames = (genreIds: number[]) => {
@@ -59,7 +70,7 @@ const MoviesPage = () => {
                 const genre = genres.find((genre) => genre.id === id);
                 return genre ? genre.name : "Невідомий жанр";
             })
-            .join(", "); // Перетворюємо масив жанрів в рядок
+            .join(", ");
     };
 
     return (
@@ -69,12 +80,11 @@ const MoviesPage = () => {
                     type="text"
                     placeholder="Пошук фільмів..."
                     value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
+                    onChange={(e) => setSearchQuery(e.target.value)} // Оновлюємо пошуковий запит
                 />
-                <button onClick={handleSearch}>Пошук</button>
             </div>
             <MoviesComponent movies={movies} getGenreNames={getGenreNames} genres={genres} />
-            {!searchQuery && ( // Показуємо пагінацію лише при відсутності пошукового запиту
+            {!searchQuery && ( // Пагінація з'являється лише без пошукового запиту
                 <div>
                     <button
                         onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
