@@ -1,48 +1,42 @@
-import React, {FC} from 'react';
-import {Imovies} from "@/components/models/Imovies";
-import {img} from "@/components/constants/urls";
+import React, { FC } from 'react';
+import { Imovies } from "@/components/models/Imovies";
 import Link from "next/link";
 
-
-
 type Props = {
-    movies: Imovies[]
+    movies: Imovies[];
+    getGenreNames: (genreIds: number[]) => string; // Додано для отримання жанрів по ID
 }
-const MoviesComponent:FC<Props> = ({movies}) => {
 
+const MoviesComponent: FC<Props> = ({ movies, getGenreNames }) => {
     return (
         <div>
             <ul>
-                {
-                    movies.map((movie: Imovies) => (<li key={movie.id}>
+                {movies.map((movie: Imovies) => (
+                    <li key={movie.id}>
                         <Link href={`/movies/${movie.id}`}>
-                            {movie.title}
                             {movie.poster_path && (
                                 <img
-                                    src={`${img}${movie.poster_path}`}
+                                    src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
                                     alt={movie.title}
-                                    style={{width: "200px"}}
+                                    style={{ width: "200px" }}
                                 />
-                            )} </Link>
+                            )}
+                        </Link>
                         <div>
-
                             <span>{movie.title}</span>
                             <span>{movie.vote_average}</span>
                         </div>
                         <div>
                             <span>{movie.release_date}</span>
                             <span>{movie.original_language}</span>
-                            <span>{movie.genre_ids.join(' ')}</span>
+                            <span>{getGenreNames(movie.genre_ids)}</span> {/* Вивести жанри */}
                         </div>
                         <div>
-                            <p>
-                                {movie.overview}
-                            </p>
+                            <p>{movie.overview}</p>
                         </div>
-                    </li>))
-                }
+                    </li>
+                ))}
             </ul>
-
         </div>
     );
 };

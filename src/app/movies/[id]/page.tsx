@@ -1,18 +1,14 @@
 import React from "react";
-import { fetchMovieById } from "@/components/services/api.service";
+import { movieService} from "@/components/services/api.service";
 import MovieComponent from "@/components/movie/MovieComponent";
 
 type Params = {
-    params: {
-        id: string;
-    };
+    params: { id: string; };
 };
 
 const MoviePage = async ({ params }: Params) => {
     const movieId = params.id;
-
-    const movieData = await fetchMovieById(movieId);
-
+    const movieData = await movieService.getMovie(movieId);
     return (
         <div>
             <MovieComponent params={movieData} />

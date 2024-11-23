@@ -9,11 +9,12 @@ export interface Imovies {
     title: string,
     video: boolean,
     vote_average: number,
-    vote_count: number
+    vote_count: number,
     adult: boolean,
     backdrop_path: string,
-    genre_ids: number[]
+    genre_ids: number[];  // Це має бути масив чисел, а не масив об'єктів
 }
-interface genre {
-    id: number
+export interface Igenre {
+    id: number,
+    name: string,
 }
