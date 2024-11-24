@@ -29,6 +29,9 @@
     display: flex;
     gap: 20px;
 }
+.header-div-span-2>span:hover {
+    color: blue;
+}
 .header-div-go {
     display: flex;
     align-items: center;
@@ -57,6 +60,24 @@
     z-index: 1000;
 }
 
+.header-div-span {
+    position: relative;
+    cursor: pointer;
+    user-select: none;
+}
+
+.dropdown {
+    display: none;
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ddd;
+    padding: 10px;
+    list-style: none;
+    margin: 0;
+    z-index: 1000;
+    width: 150px; /* Ширина меню */
+}
+
 .dropdown li {
     padding: 5px;
 }
@@ -64,13 +85,14 @@
 .dropdown li a {
     text-decoration: none;
     color: black;
+    display: block;
 }
+
 .dropdown li a:hover {
     color: blue;
 }
-.header-div-span:hover .dropdown {
+
+/* Показуємо меню, якщо стан активний */
+.header-div-span .dropdown {
     display: block;
-}
-.header-div-span-2>span:hover {
-    color: blue;
 }

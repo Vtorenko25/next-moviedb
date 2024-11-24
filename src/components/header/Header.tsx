@@ -1,27 +1,53 @@
 'use client';
 
-import React, { FC } from "react";
+import React, { FC, useState, useEffect } from "react";
 import { Genre } from "@/app/models/Imovies";
 import './Header.css';
 
 interface HeaderProps {
     setSearchQuery: (query: string) => void;
-    genres: Genre[]; // Передаємо жанри як пропси
+    genres: Genre[];
 }
 
 const Header: FC<HeaderProps> = ({ setSearchQuery, genres }) => {
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+    const toggleMenu = () => {
+        setIsMenuOpen((prev) => !prev);
+    };
+
+    const closeMenu = () => {
+        setIsMenuOpen(false);
+    };
+
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            const target = event.target as HTMLElement;
+            if (!target.closest(".header-div-span")) {
+                closeMenu();
+            }
+        };
+
+        document.addEventListener("click", handleClickOutside);
+        return () => {
+            document.removeEventListener("click", handleClickOutside);
+        };
+    }, []);
+
     return (
         <header className="header">
             <div className="header-div">
-                <span className="header-div-span">
+                <span className="header-div-span" onClick={toggleMenu}>
                     Всі жанри &#9660;
-                    <ul className="dropdown">
-                        {genres.map((genre) => (
-                            <li key={genre.id}>
-                                <a href={`/genre/${genre.id}`}>{genre.name}</a>
-                            </li>
-                        ))}
-                    </ul>
+                    {isMenuOpen && (
+                        <ul className="dropdown">
+                            {genres.map((genre) => (
+                                <li key={genre.id}>
+                                    <a href={`/genre/${genre.id}`}>{genre.name}</a>
+                                </li>
+                            ))}
+                        </ul>
+                    )}
                 </span>
                 <div>
                     <input
@@ -40,6 +66,7 @@ const Header: FC<HeaderProps> = ({ setSearchQuery, genres }) => {
                 <span>Шоу</span>
             </div>
             <div className="header-div-go">
+                <span>Тарифи</span>
                 <button className="header-div-button">Увійти</button>
             </div>
         </header>
@@ -47,4 +74,3 @@ const Header: FC<HeaderProps> = ({ setSearchQuery, genres }) => {
 };
 
 export default Header;
-
