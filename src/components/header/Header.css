@@ -41,3 +41,36 @@
     border: none;
     border-radius: 4px
 }
+.header-div-span {
+    position: relative;
+    cursor: pointer;
+}
+
+.dropdown {
+    display: none;
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ddd;
+    padding: 10px;
+    list-style: none;
+    margin: 0;
+    z-index: 1000;
+}
+
+.dropdown li {
+    padding: 5px;
+}
+
+.dropdown li a {
+    text-decoration: none;
+    color: black;
+}
+.dropdown li a:hover {
+    color: blue;
+}
+.header-div-span:hover .dropdown {
+    display: block;
+}
+.header-div-span-2>span:hover {
+    color: blue;
+}

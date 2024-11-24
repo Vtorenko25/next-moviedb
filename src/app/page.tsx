@@ -2,11 +2,11 @@
 
 import MoviesPage from "@/app/(pages)/movies/page";
 
+
 const Page = () => {
   return (
       <div>
-
-       <MoviesPage/>
+              <MoviesPage />
       </div>
   );
 };

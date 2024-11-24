@@ -3,11 +3,11 @@
 import React, { useState } from 'react';
 import MoviesComponent from "@/components/movies/MoviesComponent";
 import GetGenres from "@/components/getGeners/GetGenres";
-import SearchComponent from '@/components/search/SearchMovies';
+import SearchComponent from "@/components/search/SearchMovies";
 import { Genre, Imovies } from "@/app/models/Imovies";
-import { getGenreNames } from '@/components/helpers/helpers';
+import { getGenreNames } from "@/components/helpers/helpers";
 import Header from "@/components/header/Header";
-import './GetMovies.css'
+import './GetMovies.css';
 
 const GetMovies = () => {
     const [page, setPage] = useState(1);
@@ -17,29 +17,41 @@ const GetMovies = () => {
 
     return (
         <div>
-            <Header setSearchQuery={setSearchQuery} />
+            {/* Передаємо жанри у Header */}
+            <Header setSearchQuery={setSearchQuery} genres={genres} />
+
+            {/* Отримуємо жанри */}
             <GetGenres setGenres={setGenres} />
+
+            {/* Пошук */}
             <SearchComponent
                 searchQuery={searchQuery}
                 setSearchQuery={setSearchQuery}
                 setMovies={setMovies}
-                page={page}/>
+                page={page}
+            />
+
+            {/* Відображення фільмів */}
             <MoviesComponent
                 movies={movies}
                 getGenreNames={(ids) => getGenreNames(ids, genres)}
                 genres={genres}
             />
 
+            {/* Пагінація */}
             {!searchQuery && (
                 <div className="pagination-button-div">
-                    <button className="pagination-button"
+                    <button
+                        className="pagination-button"
                         onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
                         disabled={page === 1}
                     >
                         Попередня сторінка
                     </button>
-                    <button className="pagination-button"
-                        onClick={() => setPage((prev) => prev + 1)}>
+                    <button
+                        className="pagination-button"
+                        onClick={() => setPage((prev) => prev + 1)}
+                    >
                         Наступна сторінка
                     </button>
                 </div>

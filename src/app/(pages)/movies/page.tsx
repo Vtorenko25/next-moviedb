@@ -1,16 +1,14 @@
 'use client';
 
 import React from 'react';
-import GetMovies from '@/components/getMovies/GetMovies'; // Імпортуємо новий компонент
+import GetMovies from "@/components/getMovies/GetMovies";
 
 const MoviesPage = () => {
     return (
         <div>
-            <GetMovies /> {/* Використовуємо GetMovies */}
+            <GetMovies />
         </div>
     );
 };
 
 export default MoviesPage;
-
-
