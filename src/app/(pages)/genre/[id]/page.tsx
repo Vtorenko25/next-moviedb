@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import MoviesComponent from "@/components/movies/MoviesComponent";
 import { movieService } from "@/components/services/api.service";
-import { Imovies } from "@/components/models/Imovies";
+import { Imovies } from "@/app/models/Imovies";
 
 const GenrePage = () => {
     const { id } = useParams(); // Отримуємо ID жанру з URL

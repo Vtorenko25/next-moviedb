@@ -1,6 +1,6 @@
 import {base, baseId, genres, search, token} from "@/components/constants/urls";
-import {Imoviees} from "@/components/models/Imoviess";
-import {GenreResponse} from "@/components/models/Imovies";
+import {Imoviees} from "@/app/models/Imoviess";
+import {GenreResponse} from "@/app/models/Imovies";
 
 export const urlBuilder = {
     moviesBaseUrl: (newPage: number) => `/movie?language=uk-UA&page=${newPage}`,
@@ -53,14 +53,11 @@ export const movieService = {
                     Authorization: 'Bearer ' + token,
                 },
             });
-
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
-
             const data: GenreResponse = await response.json();
             console.log(data);
-
             return data;
         } catch (error) {
             console.error("Error fetching genres:", error);
@@ -69,7 +66,7 @@ export const movieService = {
     }
     ,
     getMoviesByGenre: async (genreId: number) => {
-        const response = await fetch(`https://api.themoviedb.org/3/discover/movie?with_genres=${genreId}&language=uk-UA`, {
+        const response = await fetch(`${base}/movie?with_genres=${genreId}&language=uk-UA`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },

@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Imovies } from "@/components/models/Imovies";
+import { Imovies } from "@/app/models/Imovies";
 import Link from "next/link";
 
 type Props = {
