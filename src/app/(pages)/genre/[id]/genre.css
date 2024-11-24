@@ -1,0 +1,9 @@
+.genre-home {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
+.genre-home:hover {
+    color: blue;
+}

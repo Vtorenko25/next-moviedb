@@ -1,0 +1,54 @@
+.movie {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px
+}
+.movieComponent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    border: 1px solid rgba(128, 128, 128, 0.29);
+    width: 80vw;
+    border-radius: 10px;
+}
+.movieComponent img {
+    width: 400px;
+    margin: 20px;
+}
+.movieComponent-text {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    flex-direction: column;
+}
+.movieComponent-text h2 {
+    font-size: 30px;
+}
+.movieDetails {
+    display: flex;
+    gap: 5px;
+    flex-direction: column;
+}
+.movieDetails-rating {
+    color: yellow;
+    font-size: 25px;
+}
+.movieGenres-genre {
+    display: flex;
+    gap: 5px;
+}
+.movie-home>span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 20px;
+}
+.movie-home>span:hover {
+    color: blue;
+}
+.movieGenre:hover {
+    color: blue;
+}

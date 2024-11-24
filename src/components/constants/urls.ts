@@ -6,4 +6,6 @@ export const token: string = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1YTZmOTg3ZTg2YzA4M
 
 export const genres: string = 'https://api.themoviedb.org/3/genre/movie/list?&language=uk-UA';
 
+export const img: string = 'https://image.tmdb.org/t/p/';
+
 export const search: string = 'https://api.themoviedb.org/3/search/'

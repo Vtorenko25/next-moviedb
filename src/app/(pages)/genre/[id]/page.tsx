@@ -5,9 +5,11 @@ import { useParams } from 'next/navigation';
 import MoviesComponent from "@/components/movies/MoviesComponent";
 import { movieService } from "@/components/services/api.service";
 import { Imovies } from "@/app/models/Imovies";
+import MenuHome from "@/components/menu/MenuHome";
+import './genre.css'
 
 const GenrePage = () => {
-    const { id } = useParams(); // Отримуємо ID жанру з URL
+    const { id } = useParams();
     const [movies, setMovies] = useState<Imovies[]>([]);
     const [genres, setGenres] = useState<{ id: number; name: string }[]>([]);
     const [genreName, setGenreName] = useState<string>("");
@@ -17,15 +19,15 @@ const GenrePage = () => {
 
         const fetchMoviesAndGenres = async () => {
             try {
-                // Отримуємо фільми за жанром
+
                 const movieResponse = await movieService.getMoviesByGenre(Number(id));
                 setMovies(movieResponse.results);
 
-                // Отримуємо всі жанри
+
                 const genreResponse = await movieService.getGenres();
                 setGenres(genreResponse.genres);
 
-                // Встановлюємо назву жанру
+
                 const currentGenre = genreResponse.genres.find((genre) => genre.id === Number(id));
                 setGenreName(currentGenre ? currentGenre.name : "Невідомий жанр");
             } catch (error) {
@@ -38,7 +40,8 @@ const GenrePage = () => {
 
     return (
         <div>
-            <h1>Фільми жанру: {genreName}</h1>
+            <div className="genre-home"><MenuHome/></div>
+
             <MoviesComponent
                 movies={movies}
                 getGenreNames={(ids) => ids.map((id) => genres.find((g) => g.id === id)?.name || "Невідомий жанр").join(', ')}

@@ -1,7 +1,7 @@
 import { movieService } from "@/components/services/api.service";
 import { Imovies, Genre } from "@/app/models/Imovies";
 
-// Функція для пошуку фільмів
+
 export const searchMovies = async (query: string): Promise<Imovies[]> => {
     if (!query) return [];
     try {
@@ -13,7 +13,7 @@ export const searchMovies = async (query: string): Promise<Imovies[]> => {
     }
 };
 
-// Функція для завантаження популярних фільмів
+
 export const fetchPopularMovies = async (page: number): Promise<Imovies[]> => {
     try {
         const allMovies = await movieService.getMovies(page);
@@ -24,7 +24,7 @@ export const fetchPopularMovies = async (page: number): Promise<Imovies[]> => {
     }
 };
 
-// Функція для отримання назв жанрів за ID
+
 export const getGenreNames = (genreIds: number[], genres: Genre[]): string => {
     return genreIds
         .map((id) => {

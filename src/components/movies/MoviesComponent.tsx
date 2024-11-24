@@ -3,6 +3,7 @@ import { Imovies } from "@/app/models/Imovies";
 import Link from "next/link";
 import './MoviesComponent.css';
 import {renderStars} from "@/components/rating/Rating";
+import {img} from "@/components/constants/urls";
 
 
 type Props = {
@@ -18,10 +19,11 @@ const MoviesComponent: FC<Props> = ({ movies, getGenreNames, genres }) => {
             <div className="moviesComponent_movies">
                 {movies.map((movie: Imovies) => (
                     <div key={movie.id}>
+
                         <Link href={`/movies/${movie.id}`}>
                             {movie.poster_path && (
                                 <img
-                                    src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
+                                    src={`${img}w200${movie.poster_path}`}
                                     alt={movie.title}
                                 />
                             )}
@@ -45,7 +47,7 @@ const MoviesComponent: FC<Props> = ({ movies, getGenreNames, genres }) => {
                             </span>
                         </div>
                         <div>
-                            <p>{movie.overview}</p>
+                            <p className="moviesComponent-text">{movie.overview}</p>
                         </div>
                     </div>
                 ))}

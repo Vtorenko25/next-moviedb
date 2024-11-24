@@ -6,7 +6,8 @@ import GetGenres from "@/components/getGeners/GetGenres";
 import SearchComponent from '@/components/search/SearchMovies';
 import { Genre, Imovies } from "@/app/models/Imovies";
 import { getGenreNames } from '@/components/helpers/helpers';
-import Header from "@/components/header/Header"; // Імпортуємо Header
+import Header from "@/components/header/Header";
+import './GetMovies.css'
 
 const GetMovies = () => {
     const [page, setPage] = useState(1);
@@ -30,7 +31,7 @@ const GetMovies = () => {
             />
 
             {!searchQuery && (
-                <div>
+                <div className="pagination-button-div">
                     <button className="pagination-button"
                         onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
                         disabled={page === 1}

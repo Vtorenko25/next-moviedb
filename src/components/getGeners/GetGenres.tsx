@@ -3,7 +3,6 @@
 import React, { useEffect } from 'react';
 import { movieService } from "@/components/services/api.service";
 import { Genre } from "@/app/models/Imovies";
-
 interface GetGenresProps {
     setGenres: (genres: Genre[]) => void;
 }
@@ -21,7 +20,11 @@ const GetGenres: React.FC<GetGenresProps> = ({ setGenres }) => {
         fetchGenres();
     }, [setGenres]);
 
-    return null;
+    return (
+        <div>
+
+        </div>
+    );
 };
 
 export default GetGenres;

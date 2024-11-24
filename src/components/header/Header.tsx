@@ -1,11 +1,10 @@
 'use client';
 
 import React, { FC } from "react";
-import MenuHome from "@/components/menu/MenuHome";
 import './Header.css'
 
 interface HeaderProps {
-    setSearchQuery: (query: string) => void; // Функція для оновлення пошукового запиту
+    setSearchQuery: (query: string) => void;
 }
 
 const Header: FC<HeaderProps> = ({ setSearchQuery }) => {
@@ -22,9 +21,7 @@ const Header: FC<HeaderProps> = ({ setSearchQuery }) => {
                         onChange={(e) => setSearchQuery(e.target.value)}/>
                 </div>
             </div>
-            <div>
-                <span><MenuHome/></span>
-            </div>
+
             <div className="header-div-span-2">
                 <span>Фільми</span>
                 <span>Мультфільми</span>

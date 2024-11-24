@@ -51,6 +51,7 @@ body {
     justify-content: center;
     align-items: center;
     gap: 10px;
+
 }
 .moviesComponent_rating-div {
   color: yellow;
@@ -62,11 +63,22 @@ body {
 .moviesComponent_rating-genre {
     cursor: pointer;
     margin-right: 5px
+
 }
 .moviesComponent_rating-genre:hover {
     color: blue;
 }
 .moviesComponent_rating-div-genre {
     display: flex;
-    gap: 3px
+    justify-content: center;
+    align-items: center;
+    gap: 3px;
+    max-width: 80%;
+    flex-wrap: wrap;
+}
+
+
+.moviesComponent-text {
+    max-width: 90%;
+    margin-left: 20px
 }
