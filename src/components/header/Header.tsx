@@ -66,7 +66,6 @@ const Header: FC<HeaderProps> = ({ setSearchQuery, genres }) => {
                 <span>Шоу</span>
             </div>
             <div className="header-div-go">
-                <span>Тарифи</span>
                 <button className="header-div-button">Увійти</button>
             </div>
         </header>
