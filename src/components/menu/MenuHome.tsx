@@ -6,7 +6,7 @@ const MenuHome = () => {
         <div>
             <ul>
                 <li>
-                    <Link href={'/movies'}>Всі фільми</Link>
+                    <Link href={'/'}>Головна сторінка</Link>
                 </li>
             </ul>
         </div>

@@ -1,6 +1,9 @@
 import React, { FC } from 'react';
 import { Imovies } from "@/app/models/Imovies";
 import Link from "next/link";
+import './MoviesComponent.css';
+import {renderStars} from "@/components/rating/Rating";
+
 
 type Props = {
     movies: Imovies[];
@@ -9,39 +12,34 @@ type Props = {
 }
 
 const MoviesComponent: FC<Props> = ({ movies, getGenreNames, genres }) => {
-    const getGenreNameById = (id: number) => {
-        if (!genres || genres.length === 0) return "Невідомий жанр"; // Перевірка
-        const genre = genres.find((genre) => genre.id === id);
-        return genre ? genre.name : "Невідомий жанр";
-    };
 
     return (
-        <div>
-            <ul>
+        <div className="moviesComponent">
+            <div className="moviesComponent_movies">
                 {movies.map((movie: Imovies) => (
-                    <li key={movie.id}>
+                    <div key={movie.id}>
                         <Link href={`/movies/${movie.id}`}>
                             {movie.poster_path && (
                                 <img
                                     src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
                                     alt={movie.title}
-                                    style={{ width: "200px" }}
                                 />
                             )}
                         </Link>
-                        <div>
-                            <span>{movie.title}</span>
-                            <span>{movie.vote_average}</span>
+                        <div className="moviesComponent_rating">
+                            <h2>{movie.title}</h2>
+                            <span>
+                                <div className="moviesComponent_rating-div">{renderStars(movie.vote_average /2)}</div>
+                            </span>
                         </div>
                         <div>
-                            <span>{movie.release_date}</span>
-                            <span>{movie.original_language}</span>
-                            <span>
+
+                            <span className="moviesComponent_rating-div-genre"> Жанри:
                                 {movie.genre_ids.map((genreId) => (
                                     <Link key={genreId} href={`/genre/${genreId}`}>
-                                    <span style={{ cursor: 'pointer', color: 'blue', marginRight: '5px' }}>
-                                         {getGenreNames([genreId])}
-                                    </span>
+                                        <span className="moviesComponent_rating-genre">
+                                            {getGenreNames([genreId])}
+                                        </span>
                                     </Link>
                                 ))}
                             </span>
@@ -49,9 +47,9 @@ const MoviesComponent: FC<Props> = ({ movies, getGenreNames, genres }) => {
                         <div>
                             <p>{movie.overview}</p>
                         </div>
-                    </li>
+                    </div>
                 ))}
-            </ul>
+            </div>
         </div>
     );
 };

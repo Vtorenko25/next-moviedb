@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    overflow-x: hidden;
+}
+.moviesComponent>div {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    width: 100vw;
+    flex-wrap: wrap;
+    overflow: hidden;
+    margin-top: 10px;
+}
+.moviesComponent_movies {
+    width: 30vw;
+    display: flex;
+    justify-content: center;
+}
+.moviesComponent_movies>div {
+    border: 1px solid rgba(128, 128, 128, 0.39);
+    padding: 5px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: column;
+    gap: 5px;
+}
+.moviesComponent_movies p{
+    width: 25vw;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.moviesComponent_movies img{
+    padding-top: 10px;
+    width: 80%;
+}
+.moviesComponent_movies img:hover {
+    scale: 110%;
+}
+.moviesComponent_rating {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.moviesComponent_rating-div {
+  color: yellow;
+    font-size: 25px;
+}
+.moviesComponent_rating h2 {
+    font-size: 20px;
+}
+.moviesComponent_rating-genre {
+    cursor: pointer;
+    margin-right: 5px
+}
+.moviesComponent_rating-genre:hover {
+    color: blue;
+}
+.moviesComponent_rating-div-genre {
+    display: flex;
+    gap: 3px
+}

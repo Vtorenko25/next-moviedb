@@ -1,10 +1,15 @@
-import MenuHome from "@/components/menu/MenuHome";
+'use client';
 
+import MoviesPage from "@/app/(pages)/movies/page";
 
-export default function Home() {
+const Page = () => {
   return (
-    <div>
-    <MenuHome/>
-    </div>
+      <div>
+
+       <MoviesPage/>
+      </div>
   );
-}
+};
+export default Page;
+
+

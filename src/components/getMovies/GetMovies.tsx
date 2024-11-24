@@ -6,43 +6,41 @@ import GetGenres from "@/components/getGeners/GetGenres";
 import SearchComponent from '@/components/search/SearchMovies';
 import { Genre, Imovies } from "@/app/models/Imovies";
 import { getGenreNames } from '@/components/helpers/helpers';
+import Header from "@/components/header/Header"; // Імпортуємо Header
 
 const GetMovies = () => {
-    const [page, setPage] = useState(1); // Сторінка для популярних фільмів
-    const [movies, setMovies] = useState<Imovies[]>([]); // Список фільмів
-    const [genres, setGenres] = useState<Genre[]>([]); // Жанри
-    const [searchQuery, setSearchQuery] = useState(""); // Пошуковий запит
+    const [page, setPage] = useState(1);
+    const [movies, setMovies] = useState<Imovies[]>([]);
+    const [genres, setGenres] = useState<Genre[]>([]);
+    const [searchQuery, setSearchQuery] = useState("");
 
     return (
         <div>
-            {/* Компонент для завантаження жанрів */}
+            <Header setSearchQuery={setSearchQuery} />
             <GetGenres setGenres={setGenres} />
-
-            {/* Компонент для пошуку */}
             <SearchComponent
                 searchQuery={searchQuery}
                 setSearchQuery={setSearchQuery}
                 setMovies={setMovies}
-                page={page}
-            />
-
-            {/* Компонент для відображення фільмів */}
+                page={page}/>
             <MoviesComponent
                 movies={movies}
                 getGenreNames={(ids) => getGenreNames(ids, genres)}
                 genres={genres}
             />
 
-            {/* Пагінація (лише без пошуку) */}
             {!searchQuery && (
                 <div>
-                    <button
+                    <button className="pagination-button"
                         onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
                         disabled={page === 1}
                     >
                         Попередня сторінка
                     </button>
-                    <button onClick={() => setPage((prev) => prev + 1)}>Наступна сторінка</button>
+                    <button className="pagination-button"
+                        onClick={() => setPage((prev) => prev + 1)}>
+                        Наступна сторінка
+                    </button>
                 </div>
             )}
         </div>
@@ -50,4 +48,3 @@ const GetMovies = () => {
 };
 
 export default GetMovies;
-

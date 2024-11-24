@@ -16,7 +16,9 @@ const SearchComponent: FC<SearchComponentProps> = ({ searchQuery, setSearchQuery
     useEffect(() => {
         const fetchMovies = async () => {
             if (searchQuery) {
+                console.log("Пошук фільмів для запиту:", searchQuery);
                 const results = await searchMovies(searchQuery);
+                console.log("Результати пошуку:", results);
                 setMovies(results); // Оновлюємо список фільмів результатами пошуку
             } else {
                 setMovies([]); // Очищуємо список, якщо пошуковий запит порожній
@@ -29,7 +31,9 @@ const SearchComponent: FC<SearchComponentProps> = ({ searchQuery, setSearchQuery
     useEffect(() => {
         const fetchMovies = async () => {
             if (!searchQuery) {
+                console.log("Завантаження популярних фільмів для сторінки:", page);
                 const results = await fetchPopularMovies(page);
+                console.log("Популярні фільми:", results);
                 setMovies(results); // Оновлюємо список популярними фільмами
             }
         };
@@ -38,12 +42,7 @@ const SearchComponent: FC<SearchComponentProps> = ({ searchQuery, setSearchQuery
 
     return (
         <div>
-            <input
-                type="text"
-                placeholder="Пошук фільмів..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)} // Оновлюємо пошуковий запит
-            />
+
         </div>
     );
 };
