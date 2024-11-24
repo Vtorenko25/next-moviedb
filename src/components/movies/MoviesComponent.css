@@ -39,6 +39,9 @@ body {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+.moviesComponent_movies-h2:hover {
+    color: blue;
+}
 .moviesComponent_movies img{
     padding-top: 10px;
     width: 80%;

@@ -30,7 +30,7 @@ const MoviesComponent: FC<Props> = ({ movies, getGenreNames, genres }) => {
                         </Link>
                         <div className="moviesComponent_rating">
                             <Link href={`/movies/${movie.id}`}>
-                            <h2>{movie.title}</h2>
+                            <h2 className="moviesComponent_movies-h2">{movie.title}</h2>
                             </Link>
                             <span>
                                 <div className="moviesComponent_rating-div">{renderStars(movie.vote_average /2)}</div>
